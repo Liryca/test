@@ -7,14 +7,35 @@ import Modal from "../Modal/Modal";
 import { usersState } from "../../store/reducers/usersReducer";
 
 
+
 function getDayBirthday(date: string) {
-  
+
+  const dateNow = new Date()
   const birthday = new Date(date); 
 
-
   const day = birthday.getDate();
-  const month = new Date(date).toLocaleString('ru', { month: 'long' }).slice(0,3)
-  return `${day} ${month}`
+  const month = new Date(date).toLocaleString('ru', { month: 'long' }).slice(0, 3)
+  
+    
+  const birthdayMonth = birthday.getMonth()+1;
+  const nowmonth = dateNow.getMonth()+1;
+  const nextYear = dateNow.getFullYear() + 1;
+
+  let year = '';
+
+  if (birthdayMonth >= nowmonth) {
+    year='thisYear'
+  } else {
+    year = 'nextYear'
+  }
+
+  const obj = {
+    year:year,
+    date: `${day} ${month}`
+}
+
+  return obj
+ 
 }
 
 
@@ -23,6 +44,12 @@ function getDayBirthday(date: string) {
 
 
 const UserList: React.FC = () => {
+
+
+  const dateNow = new Date();
+  const nowmonth = dateNow.getMonth()+1;
+  const nextYear = dateNow.getFullYear() + 1;
+
 
   const dispatch = useAppDispatch();
   const userList = useAppSelector((state: any) => state.users);
@@ -34,35 +61,14 @@ const UserList: React.FC = () => {
     }, 500);
   }, [dispatch]);
 
+  console.log(userList);
 
-  function compareDate(data:string) {
-    const birthday = new Date(data); 
-      const dateNow = new Date()
-  
-    const birthdayMonth = birthday.getMonth()+1;
-    const nowmonth = dateNow.getMonth()+1;
-    const nextYear = dateNow.getFullYear() + 1;
-    
-    if (birthdayMonth >= nowmonth) {
-    return true
-    } else {
-      return false
-  }
-  
-   
-  
-    // console.log(nowmonth, 'nowmonth');
-    // console.log(nextYear, 'nowYear');
-    // console.log(birthdayMonth, 'birthdayMonth');
-  }
-  console.log(compareDate(userList.birthday))
-
-console.log(userList)
   return (
     <div className="user-list">
       <Modal/>
       {userList.map((user: User) => {
         return (
+          radio==='name'?
           <div key={user.id} className="user-card">
             <img className='user-card-avatar' src={user.avatarUrl} alt="avatar" />
             <div className="user-info">
@@ -73,8 +79,23 @@ console.log(userList)
             </div>
               <p className="user-card-department"><span>{user.department}</span></p>
             </div>
-            {radio === 'birthday' && <p className='user-card-birthday'>{getDayBirthday(user.birthday) }</p>}
-          </div>
+            {/* {radio === 'birthday' && <p className='user-card-birthday'>{getDayBirthday(user.birthday).date}</p>} */}
+
+            </div> :
+            <div key={user.id} className="user-card">
+            <img className='user-card-avatar' src={user.avatarUrl} alt="avatar" />
+            <div className="user-info">
+            <div className="user-card-name">
+            <p>{user.firstName}</p>
+            <p>{user.lastName}</p>
+            <p>{user.userTag}</p>
+            </div>
+              <p className="user-card-department"><span>{user.department}</span></p>
+            </div>
+            {radio === 'birthday' && <p className='user-card-birthday'>{getDayBirthday(user.birthday).date}</p>}
+
+            </div> 
+           
       )
  
       })}
