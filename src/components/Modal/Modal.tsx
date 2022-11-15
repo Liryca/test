@@ -11,6 +11,7 @@ const Modal: React.FC = () => {
     const radio = useAppSelector((state: { modal: { radio:string}; }) => state.modal.radio)
     
     const dispatch = useAppDispatch();
+    
     useEffect(() => {
         if (radio === 'name') {
             dispatch(sendUserNameThunk());

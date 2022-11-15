@@ -1,18 +1,57 @@
 import axios from 'axios';
 import { User } from '../types/usersTypes';
 
-export function fetchUsers() {
+export async function fetchUsers() {
   const options = {
     method: 'GET',
     url: "https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all",
     headers: { 'Content-Type': 'application/json' }
   };
 
-  return axios.request(options).then((response) => {
-    return response.data
-  }).catch((error) => {
-    return error(error);
-  });
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (error) {
+    return (error);
+  }
+
+}
+
+
+export async function fetchUsersAbout(d: string) {
+
+  const options = {
+    method: 'GET',
+    url: `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=${d}`,
+    headers: { 'Content-Type': 'application/json' }
+  };
+
+  try {
+    const response = await axios.request(options);
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+
+}
+
+
+
+export function getDayBirthday(date: string) {
+  const birthday = new Date(date); 
+  const day = birthday.getDate();
+  const month = new Date(date).toLocaleString('ru', { month: 'long' }).slice(0, 3);
+  return `${day} ${month}`;
+ 
+}
+
+
+
+export function sortedUserDepartment(users:User[],value:string){
+  console.log(users)
+  console.log(value)
+ return users.filter((user:any) => user.department === value)
+
 
 }
 
@@ -22,7 +61,7 @@ export function sotredUserName(users: User[]) {
 
 }
 
-const date = new Date('2022-07-24');
+const date = new Date();
 const monthNow = date.getMonth() + 1;
 const dayNow = date.getDate();
 

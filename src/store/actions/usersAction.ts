@@ -1,6 +1,6 @@
 import { User } from "../../types/usersTypes";
 import { Dispatch, } from 'redux';
-import { fetchUsers, sotredUserDay, sotredUserName } from "../../api/api";
+import { fetchUsers, fetchUsersAbout, sortedUserDepartment, sotredUserDay, sotredUserName } from "../../api/api";
 
 export const getSortedNameUsers = (users:User[]) => ({
     type: 'SORT_NAME_USERS',
@@ -10,6 +10,11 @@ export const getSortedNameUsers = (users:User[]) => ({
 
 export const getSortedDateUsers = (users: User[]) => ({
     type: 'SORT_DATE_USERS',
+    users
+})
+
+export const getSortedDepartmentUsers = (users: User[]) => ({
+    type: 'SORT_DEPARTMENT_USERS',
     users
 })
 
@@ -29,6 +34,23 @@ export function sendUserDateThunk() {
     };
 }
 
+// export function sendUserDepartmentThunk(value: string) {
+//     return async function (dispatch: Dispatch) {
+//         const response = await fetchUsers()
+//         console.log(value)
+//         dispatch(getSortedDepartmentUsers(sortedUserDepartment(response.items,value)))
+              
+//     };
+// }
 
 
 
+
+export function sendUserDepartmentThunk(value: string) {
+    return async function (dispatch: Dispatch) {
+        const response = await fetchUsersAbout(value)
+        console.log(response)
+        dispatch(getSortedDepartmentUsers((response.items)))
+              
+    };
+}

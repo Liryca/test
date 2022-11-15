@@ -1,4 +1,4 @@
-import { getSortedDateUsers, getSortedNameUsers } from "../store/actions/usersAction";
+import { getSortedDateUsers, getSortedDepartmentUsers, getSortedNameUsers } from "../store/actions/usersAction";
 
 export interface User{
     avatarUrl: string;
@@ -13,4 +13,7 @@ export interface User{
 }
 
 export type UsersState = User[]|null;
-export type UsersActionType = ReturnType<typeof getSortedNameUsers> | ReturnType<typeof getSortedDateUsers>;
+export type UsersActionType =
+    ReturnType<typeof getSortedNameUsers> |
+    ReturnType<typeof getSortedDateUsers> |
+    ReturnType<typeof getSortedDepartmentUsers>;
