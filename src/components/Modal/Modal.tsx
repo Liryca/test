@@ -1,7 +1,7 @@
 import React, { useEffect} from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelectorTyped';
 import { checkedRadioModal, closeModalShow } from '../../store/actions/modalAction';
-import { sendUserDateThunk, sendUserNameThunk } from '../../store/actions/usersAction';
+// import { sendUserDateThunk, sendUserNameThunk } from '../../store/actions/usersAction';
 import './Modal.css';
 import x from './x.svg';
 
@@ -12,13 +12,15 @@ const Modal: React.FC = () => {
     
     const dispatch = useAppDispatch();
     
-    useEffect(() => {
-        if (radio === 'name') {
-            dispatch(sendUserNameThunk());
-        } else {
-            dispatch(sendUserDateThunk());
-        }
-    }, [radio, dispatch])
+    // useEffect(() => {
+    //     if (radio === 'name') {
+    //         dispatch(sendUserNameThunk());
+    //     } else {
+    //         dispatch(sendUserDateThunk());
+    //     }
+    // }, [radio, dispatch])
+
+   
 
     function closeModal() {
         dispatch(closeModalShow(false));

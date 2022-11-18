@@ -2,25 +2,23 @@ import { UsersActionType } from '../../types/usersTypes'
 import { UsersState } from "../../types/usersTypes";
 
 
-export const usersState = [];
+const usersState = {
+    userList: [],
+    loading: false,
+    error: null
+}
 
 export const usersReducer = (state = usersState, action: UsersActionType): UsersState => {
-    console.log(action.users)
+    console.log(action)
     switch (action.type) {
-        case "SORT_NAME_USERS":
-            return [
-                ...action.users]
-
-        case "SORT_DATE_USERS":
-            return [
-                ...action.users
-            ]
-        case "SORT_DEPARTMENT_USERS":
-            return [
-                ...action.users
-            ]
-
+        case "GET_USERS":
+            return { loading: true, error: null, userList: [] }
+        case 'GET_USERS_SUCCESS':
+            return { loading: false, error: null, userList: action.userList }
+        case 'GET_USERS_ERROR':
+            return { loading: false, error: action.error, userList: [] }
         default:
             return state
     }
+
 }

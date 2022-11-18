@@ -1,24 +1,21 @@
 import axios from 'axios';
 import { User } from '../types/usersTypes';
 
-export async function fetchUsers() {
+export async function fetchAllUsers() {    /// получение всех юзеров
   const options = {
     method: 'GET',
     url: "https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all",
+    // url:"https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true",
     headers: { 'Content-Type': 'application/json' }
   };
 
-  try {
-    const response = await axios.request(options);
-    return response.data;
-  } catch (error) {
-    return (error);
-  }
-
+  const response = await axios.request(options)
+  console.log(response.data)
+  return response.data
 }
 
 
-export async function fetchUsersAbout(d: string) {
+export async function fetchDepartmentUsers(d: string) {  // получение по департменту 
 
   const options = {
     method: 'GET',
@@ -26,34 +23,24 @@ export async function fetchUsersAbout(d: string) {
     headers: { 'Content-Type': 'application/json' }
   };
 
-  try {
-    const response = await axios.request(options);
-    return response.data;
-  } catch (error) {
-    return error;
-  }
+  const response = await axios.request(options)
+  console.log(response.data)
+  return response.data
 
 }
 
 
 
 export function getDayBirthday(date: string) {
-  const birthday = new Date(date); 
+  const birthday = new Date(date);
   const day = birthday.getDate();
   const month = new Date(date).toLocaleString('ru', { month: 'long' }).slice(0, 3);
   return `${day} ${month}`;
- 
-}
-
-
-
-export function sortedUserDepartment(users:User[],value:string){
-  console.log(users)
-  console.log(value)
- return users.filter((user:any) => user.department === value)
-
 
 }
+
+
+
 
 
 export function sotredUserName(users: User[]) {
@@ -91,3 +78,13 @@ export function sotredUserDay(users: User[]) {
 
   return [...a, ...b]
 }
+
+
+
+// export function sortedUserDepartment(users: User[], value: string) {
+//   console.log(users)
+//   console.log(value)
+//   return users.filter((user: any) => user.department === value)
+
+
+// }
