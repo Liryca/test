@@ -5,26 +5,23 @@ import { getDayBirthday } from '../../api/api';
 import { User } from "../../types/usersTypes";
 import "./UserList.css";
 import Modal from "../Modal/Modal";
-
 import Error from "../Error/Error";
 
 
 
 const UserList: React.FC = () => {
 
-
   const dispatch = useAppDispatch();
   const userList = useAppSelector((state: any) => state.users.userList);
-  console.log(userList)
   const radio = useAppSelector((state: { modal: { radio: string }; }) => state.modal.radio);
-  const state = useAppSelector((state: any) => state.users);
   const error = useAppSelector((state: { users: { error: string }; }) => state.users.error);
-  console.log(state)
+
+
   useEffect(() => {
     setTimeout(() => {
-      dispatch(getUser());
+      dispatch( getUser());
     }, 500);
-  }, [dispatch]);
+  }, [dispatch,radio]);
 
   if (error==='Error') {
   return <Error/>

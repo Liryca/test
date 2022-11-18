@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './SearchUser.css';
 import search from './images/search.svg';
 import filtered from './images/filtered.svg';
@@ -12,7 +12,7 @@ const SearchUser: React.FC = () => {
     const dispatch = useAppDispatch();
     const radio = useAppSelector((state: { modal: { radio: string }; }) => state.modal.radio);
     const users = useAppSelector((state: { users: {users:User }; }) => state.users);
-    const [autocomplit, setAutocomplit] = useState([]);
+    // const [autocomplit, setAutocomplit] = useState([]);
  
     function handleModalOpen(e: React.MouseEvent) {
         dispatch(openModalShow(true)); 

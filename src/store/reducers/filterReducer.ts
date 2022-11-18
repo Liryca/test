@@ -1,10 +1,10 @@
-import { SortActionType, SortState } from "../../types/sortTypes";
+import { FilterActionType, FilterState } from "../../types/filterTypes";
 
-export const sortState = {
+export const filterState = {
     department:'all'
 };
 
-export function sortReducer(state = sortState, action: SortActionType): SortState {
+export function filterReducer(state = filterState, action: FilterActionType): FilterState {
     switch (action.type) {
         case 'CHOOSE_DEPARTMENT':
             return {

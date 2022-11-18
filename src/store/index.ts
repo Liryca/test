@@ -3,12 +3,12 @@ import { AnyAction, applyMiddleware, combineReducers,  legacy_createStore as cre
 import { usersReducer } from './reducers/usersReducer';
 import { modalReducer } from './reducers/modalReducer';
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import { sortReducer } from "./reducers/sortReducer";
+import { filterReducer } from "./reducers/filterReducer";
 
  const rootReducer = combineReducers({
      users: usersReducer,
      modal: modalReducer,
-     sort:sortReducer
+     filter:filterReducer
  })
 
 //  export const store = configureStore({

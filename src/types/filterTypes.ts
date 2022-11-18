@@ -1,5 +1,5 @@
 
-export interface SortActionType {
+export interface FilterActionType {
     type: string;
     department: string;
 
@@ -7,7 +7,7 @@ export interface SortActionType {
 }
 
 
-export interface SortState {
+export interface FilterState {
  department:string
 }
 

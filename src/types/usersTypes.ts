@@ -1,5 +1,3 @@
-import { getUsersAction, getUsersErrorAction, getUsersSuccessAction } from "../store/actions/usersAction";
-
 
 export interface UsersState {
     userList: User[] | null,
@@ -20,32 +18,34 @@ export interface User {
     userTag: string;
 }
 
-// export enum UserActionTypes {
-//     FETCH_USERS = 'FETCH_USERS',
-//     FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS',
-//     FETCH_USERS_ERROR = 'FETCH_USERS_FETCH_USERS_ERROR',
-// }
-// interface FetchUsersAction {
-//     type: UserActionTypes.FETCH_USERS;
-// }
-// interface FetchUsersSuccessAction {
-//     type: UserActionTypes.FETCH_USERS_SUCCESS;
-//     payload: any[]
-// }
-// interface FetchUsersErrorAction {
-//     type: UserActionTypes.FETCH_USERS_ERROR;
-//     payload: string;
-// }
-// export type UserAction = FetchUsersAction | FetchUsersErrorAction | FetchUsersSuccessAction
+
+export enum UserActionTypes {
+    GET_USERS = 'GET_USERS',
+    GET_USERS_SUCCESS = 'GET_USERS_SUCCESS',
+    GET_USERS_ERROR = 'GET_USERS_FETCH_USERS_ERROR',
+}
 
 
 
+interface GetUsersAction {
+    type: UserActionTypes.GET_USERS;
 
+}
+interface GetUsersSuccessAction {
+    type: UserActionTypes.GET_USERS_SUCCESS;
+    userList: User[]
+}
+interface GetUsersErrorAction {
+    type: UserActionTypes.GET_USERS_ERROR;
+    error: string
+}
 
-export type UsersActionType =
-    ReturnType<typeof getUsersAction>|
-    ReturnType<typeof getUsersSuccessAction> |
-    ReturnType<typeof getUsersErrorAction>
+export type UsersAction = GetUsersAction|GetUsersErrorAction|GetUsersSuccessAction
+
+// export type UsersActionType =
+//     ReturnType<typeof getUsersAction>|
+//     ReturnType<typeof getUsersSuccessAction> |
+//     ReturnType<typeof getUsersErrorAction>
 
 
 // export type UsersState = User[] | null;

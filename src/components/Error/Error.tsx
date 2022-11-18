@@ -2,13 +2,14 @@ import React from 'react';
 import flying from './flying.svg';
 import './Error.css';
 import { useAppDispatch } from '../../hooks/useSelectorTyped';
+import { getUser } from '../../store/actions/usersAction';
 // import { userNameThunk } from '../../store/actions/usersAction';
 
 const Error: React.FC = () => {
     const dispatch = useAppDispatch();
 
-    function getUsers() {
-        // dispatch(userNameThunk())
+    function getUsersAfter() {
+        dispatch(getUser())
 }
 
     return (
@@ -16,7 +17,7 @@ const Error: React.FC = () => {
             <img className='' src={flying} alt='error'></img>
             <h1>Какой-то сверхразум все сломал</h1>
             <p className='error-text' >Постараемся быстро починить</p>
-            <p className='error-link' onClick={getUsers}>Попробовать снова</p>
+            <p className='error-link' onClick={getUsersAfter}>Попробовать снова</p>
         </div>
     );
 };

@@ -1,33 +1,20 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelectorTyped';
 import { checkedRadioModal, closeModalShow } from '../../store/actions/modalAction';
-// import { sendUserDateThunk, sendUserNameThunk } from '../../store/actions/usersAction';
 import './Modal.css';
 import x from './x.svg';
 
 const Modal: React.FC = () => {
 
     const show = useAppSelector((state: { modal: { show: boolean; }; }) => state.modal.show)
-    const radio = useAppSelector((state: { modal: { radio:string}; }) => state.modal.radio)
-    
+    const radio = useAppSelector((state: { modal: { radio: string }; }) => state.modal.radio)
     const dispatch = useAppDispatch();
-    
-    // useEffect(() => {
-    //     if (radio === 'name') {
-    //         dispatch(sendUserNameThunk());
-    //     } else {
-    //         dispatch(sendUserDateThunk());
-    //     }
-    // }, [radio, dispatch])
-
-   
 
     function closeModal() {
         dispatch(closeModalShow(false));
     }
 
     function chahgeChecked(event: React.ChangeEvent<HTMLInputElement>) {
-    
         dispatch(checkedRadioModal(event.target.value));
         setTimeout(() => dispatch(closeModalShow(false)), 100);
     }

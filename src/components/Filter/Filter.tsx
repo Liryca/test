@@ -2,7 +2,7 @@ import React from 'react';
 import './Filter.css';
 import { useAppDispatch, useAppSelector } from '../../hooks/useSelectorTyped';
 import { getUser} from '../../store/actions/usersAction';
-import { chooseDepartment } from '../../store/actions/sortAction';
+import { chooseDepartment } from '../../store/actions/filterAction';
 
 
 const department = {
@@ -23,20 +23,17 @@ const department = {
 
 const Filter: React.FC = () => {
 
-    const active = useAppSelector(state => state.sort.department);
-    const radio = useAppSelector(state => state.modal.radio);
+    const active = useAppSelector(state => state.filter.department);
     const dispatch = useAppDispatch();
 
     function sortedUserDepartment(key: string) {
         dispatch(chooseDepartment(key))
         dispatch(getUser())
-        // radio==='name'?dispatch(userNameThunk()):dispatch(userDateThunk())
     }
 
     function getAllUser(key:string) {
         dispatch(chooseDepartment(key))
         dispatch(getUser())
-        // radio==='name'?dispatch(userNameThunk()):dispatch(userDateThunk())
     }
 
     return (

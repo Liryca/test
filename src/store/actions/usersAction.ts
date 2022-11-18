@@ -1,71 +1,41 @@
-import { User } from "../../types/usersTypes";
+import { User, UserActionTypes } from "../../types/usersTypes";
 import { Dispatch, } from 'redux';
-import { fetchAllUsers, fetchDepartmentUsers, sotredUserDay, sotredUserName } from "../../api/api";
+import { fetchAllUsers, fetchDepartmentUsers, sotredUserDay, sotredUserName} from "../../api/api";
 import { RootState } from "..";
 
-
-// export const getAllUserAction=(users:User[],loading:boolean,error:null|string)=>({
-//     type: 'GET_ALL_USERS',
-//     users,
-//     loading,
-//     error
-
-//  })
- 
-//  export const getDepartmentUsersAction =(users:User[],loading:boolean,error:null|string)=>({
-//      type: 'GET_DEPARTMENT_USERS',
-//      users,
-//      loading,
-//      error
-//  })
- 
- 
-
- 
-//  export function getAllUserThunk() {
-//      return async function (dispatch: Dispatch, getState: () => RootState) {
-//          const response = await fetchAllUsers()
-//          dispatch(getAllUserAction(response.items,true,null))
-//      }
-//  }
- 
-//  export function getUserDepartmentThunk() {
-//      return async function (dispatch: Dispatch, getState: () => RootState) {
-//          const { users, modal, sort } = getState()
-//          const response = await fetchDepartmentUsers(sort.department)
-//          dispatch(getDepartmentUsersAction(response.items,true,null))
-//      }
-//  }
- 
 export const getUsersAction =()=>({
-    type: 'GET_USERS',
+    type: UserActionTypes.GET_USERS,
 })
 
 export const getUsersSuccessAction = (userList:User[]) => ({
-    type: 'GET_USERS_SUCCESS',
-    userList
+    type: UserActionTypes.GET_USERS_SUCCESS,
+    userList:userList
 })
 
 export const getUsersErrorAction = (error:string) => ({
-    type: 'GET_USERS_ERROR',
-    error
+    type: UserActionTypes.GET_USERS_ERROR,
+    error:error
 })
-
-
-
-
 
  export function getUser() {
      return async function (dispatch: Dispatch, getState: () => RootState) {
-        const { sort } = getState()
+         const { filter,modal } = getState();
+       
          try {
              dispatch(getUsersAction());
-             if (sort.department === 'all') {
-                const response = await fetchAllUsers();
-                dispatch(getUsersSuccessAction(response.items));
+             if (filter.department === 'all') {
+                 const response = await fetchAllUsers();
+                 console.log(modal.radio)
+                 modal.radio === 'name' ?
+                     dispatch(getUsersSuccessAction(sotredUserName(response.items))) :
+                     dispatch(getUsersSuccessAction(sotredUserDay(response.items)))
+                // dispatch(getUsersSuccessAction(response.items));
             } else {
-                const response = await fetchDepartmentUsers(sort.department);
-                dispatch(getUsersSuccessAction(response.items));
+                 const response = await fetchDepartmentUsers(filter.department);
+                 modal.radio === 'name' ?
+                 dispatch(getUsersSuccessAction(sotredUserName(response.items))) :
+                 dispatch(getUsersSuccessAction(sotredUserDay(response.items)))
+                // dispatch(getUsersSuccessAction(response.items));
             }
 
          } catch (e) {
