@@ -2,14 +2,14 @@ import React from 'react';
 import flying from './flying.svg';
 import './Error.css';
 import { useAppDispatch } from '../../hooks/useSelectorTyped';
-import { getUser } from '../../store/actions/usersAction';
+import { getUsers} from "../../store/users/actions";
 // import { userNameThunk } from '../../store/actions/usersAction';
 
 const Error: React.FC = () => {
     const dispatch = useAppDispatch();
 
     function getUsersAfter() {
-        dispatch(getUser())
+        dispatch(getUsers())
 }
 
     return (

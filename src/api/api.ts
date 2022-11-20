@@ -9,7 +9,6 @@ export async function fetchAllUsers() {    /// получение всех юз�
     headers: { 'Content-Type': 'application/json' }
   };
   const response = await axios.request(options)
-  console.log(response.data)
   return response.data
 }
 

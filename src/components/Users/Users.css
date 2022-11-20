@@ -1,0 +1,69 @@
+.wrapper-user-list {
+    min-height: 100%;
+    overflow-y: hidden;
+}
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    /* margin: 16px; */
+    margin-top: 16px;
+
+
+}
+
+.user-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center
+}
+
+
+.user-card-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    margin-left: 16px;
+    margin-right: 12px;
+    margin-bottom: 12px;
+}
+
+.user-card-name {
+    display: flex;
+}
+
+.user-card-name p {
+    margin: 0;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 4px;
+}
+
+.user-tag {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: #97979B;
+}
+
+
+.user-card-department {
+    margin: 0;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #55555C;
+    margin-left: 4px;
+}
+
+.user-card-birthday {
+    margin-left: auto;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    text-align: right;
+    color: #55555C;
+}

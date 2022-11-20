@@ -1,14 +1,16 @@
-import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/useSelectorTyped';
-import { checkedRadioModal, closeModalShow } from '../../store/actions/modalAction';
-import './Modal.css';
-import x from './x.svg';
+import { useAppDispatch, useAppSelector } from "../../hooks/useSelectorTyped";
+import { checkedRadioModal, closeModalShow } from "../../store/modal/actions";
+import { User } from "../../types/usersTypes";
+import "./Modal.css";
+import x from "./x.svg";
 
 const Modal: React.FC = () => {
 
-    const show = useAppSelector((state: { modal: { show: boolean; }; }) => state.modal.show)
-    const radio = useAppSelector((state: { modal: { radio: string }; }) => state.modal.radio)
+    const show = useAppSelector((state: { modal: { show: boolean; }; }) => state.modal.show);
+    const radio = useAppSelector((state: { modal: { radio: string }; }) => state.modal.radio);
+ 
     const dispatch = useAppDispatch();
+
 
     function closeModal() {
         dispatch(closeModalShow(false));
