@@ -1,5 +1,5 @@
 
-export interface FilterActionType {
+export interface TabsActionType {
     type: string;
     department: string;
 
@@ -7,7 +7,7 @@ export interface FilterActionType {
 }
 
 
-export interface FilterState {
+export interface TabsState {
  department:string
 }
 

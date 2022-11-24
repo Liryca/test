@@ -1,20 +1,17 @@
 import './App.css';
-import SearchUser from '../SearchUser/SearchUser';
-import UserList from '../Users/Users';
-import Filter from '../Filter/Filter';
+import Search from '../Search/Search';
+import Users from '../Users/Users';
+import Tabs from '../Tabs/Tabs';
 
 function App() {
   return (
     <div className="App">
-    
       <div className='app-top-bar'>
         <h1 className='title'>Поиск</h1>
-        <SearchUser />
-        <Filter/>
+        <Search />
+        <Tabs/>
       </div>
-
-     
-      <UserList />
+      <Users />
     </div>
   );
 }

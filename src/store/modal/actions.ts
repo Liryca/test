@@ -10,7 +10,7 @@ export const closeModalShow = (show:boolean) => ({
         
 })
 
-export const checkedRadioModal = (radio:string) => ({
-    type: 'CHECKED_RADIO',
-    radio
+export const checkedRadioButton = (activeRadio:string) => ({
+    type: 'CHECKED_RADIO_BUTTON',
+    activeRadio
 })

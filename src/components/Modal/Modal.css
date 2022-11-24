@@ -51,7 +51,7 @@
     right: 24px;
 }
 
-.modal-radio-button {
+.modal-radio-buttons {
     display: flex;
     flex-direction: column;
     margin-left: 18px;
@@ -73,11 +73,11 @@
 
 
 
-.radio input {
+.radio-button input {
     display: none;
 }
 
-.radio span {
+.radio-button span {
     position: relative;
     display: inline-block;
     width: 20px;
@@ -87,11 +87,11 @@
     border: 2px solid #6534FF;
 }
 
-.radio input:checked+span {
+.radio-button input:checked+span {
     background: #6534FF;
 }
 
-.radio input:checked+span::before {
+.radio-button input:checked+span::before {
     content: '';
     position: absolute;
     left: 6px;

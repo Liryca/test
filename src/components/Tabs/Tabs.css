@@ -1,15 +1,12 @@
-.sort {
+.department-tabs {
     display: flex;
     margin-top: 14px;
     margin-left: 16px;
     flex-wrap: wrap;
+    padding: 0;
+    list-style: none;
 }
-
-
-
-
-
-.a {
+.all-department-tabs {
     color: #97979B;
     margin: 0;
     padding: 8px 12px;
@@ -19,7 +16,7 @@
     cursor: pointer;
 }
 
-.b {
+.category-department-tabs {
     margin: 0;
     padding: 8px 12px;
     font-weight: 600;
@@ -27,4 +24,5 @@
     line-height: 20px;
     color: #050510;
     border-bottom: 2px solid #6534FF;
+    cursor: pointer;
 }

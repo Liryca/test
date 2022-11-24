@@ -1,30 +1,17 @@
 import axios from 'axios';
 import { User } from '../types/usersTypes';
 
-export async function fetchAllUsers() {    /// получение всех юзеров
+export async function fetchUsers(department='all') {    /// получение всех юзеров
   const options = {
     method: 'GET',
-    url: "https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=all",
-    // url:"https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true",
+    url: `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=${department}`,
+    // url:"https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__code=500&__dynamic=true",//error
     headers: { 'Content-Type': 'application/json' }
   };
   const response = await axios.request(options)
   return response.data
 }
 
-
-export async function fetchDepartmentUsers(d: string) {  // получение по департменту 
-  const options = {
-    method: 'GET',
-    url: `https://stoplight.io/mocks/kode-frontend-team/koder-stoplight/86566464/users?__example=${d}`,
-    headers: { 'Content-Type': 'application/json' }
-  };
-
-  const response = await axios.request(options)
-  console.log(response.data)
-  return response.data
-
-}
 
 export function getDayBirthday(date: string) {
   const birthday = new Date(date);
@@ -35,17 +22,16 @@ export function getDayBirthday(date: string) {
 }
 
 
-export function sotredUserName(users: User[]) {
+export function sotredUsersByName(users: User[]) {
   return users.sort((a, b) => a.firstName > b.firstName ? 1 : -1);
-
 }
 
 const date = new Date();
 const monthNow = date.getMonth() + 1;
 const dayNow = date.getDate();
 
-export function sotredUserDay(users: User[]) {
-  
+export function sotredUsersByDay(users: User[]) {
+  console.log(users)
   const afterDays = users
     .filter((user) => {
       return new Date(user.birthday).getMonth() + 1 > monthNow ||

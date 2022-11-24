@@ -2,7 +2,7 @@ import { ModalAction, ModalState } from "../../types/modalTypes"
 
 export const modalState = {
     show: false,
-    radio:'name'
+    activeRadio:'name'
 }
 
 export const modalReducer = (state = modalState, action: ModalAction): ModalState => {
@@ -21,10 +21,10 @@ export const modalReducer = (state = modalState, action: ModalAction): ModalStat
                 show:false
             }
         }
-        case 'CHECKED_RADIO': {
+        case 'CHECKED_RADIO_BUTTON': {
             return {
                 ...state,
-                 radio:action.radio
+                 activeRadio:action.activeRadio
             }
             }
          

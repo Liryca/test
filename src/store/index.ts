@@ -2,16 +2,16 @@
 import { AnyAction, applyMiddleware, combineReducers,  legacy_createStore as createStore } from "redux";
 import { usersReducer } from './users/reducer';
 import { modalReducer } from '../store/modal/reducer';
-import { filterReducer } from "../store/filter/reducer";
+import { tabsReducer } from "./tabs/reducer";
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import { autocompliteReducer } from "./autocomplite/reduser";
+import { searchReducer } from "./search/reduser";
 
 
  const rootReducer = combineReducers({
      users: usersReducer,
      modal: modalReducer,
-     filter: filterReducer,
-     autocomplite:autocompliteReducer
+     tabs: tabsReducer,
+     search:searchReducer
  })
 
 export type AppDispatch = ThunkDispatch<RootState, any, AnyAction>; 

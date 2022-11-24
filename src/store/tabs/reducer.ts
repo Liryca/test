@@ -1,10 +1,10 @@
-import { FilterActionType, FilterState } from "../../types/filterTypes";
+import { TabsActionType, TabsState } from "../../types/tabsTypes";
 
 export const filterState = {
     department:'all'
 };
 
-export function filterReducer(state = filterState, action: FilterActionType): FilterState {
+export function tabsReducer(state = filterState, action: TabsActionType): TabsState {
     switch (action.type) {
         case 'CHOOSE_DEPARTMENT':
             return {
