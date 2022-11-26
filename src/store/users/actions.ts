@@ -1,6 +1,6 @@
 import { User, UserActionTypes } from "../../types/usersTypes";
 import { Dispatch, } from 'redux';
-import { fetchUsers, sotredUsersByName, sotredUsersByDay} from "../../api/api";
+import { fetchUsers, sotredUsersByName, sotredUsersByDay } from "../../api/api";
 import { RootState } from "..";
 
 
@@ -18,15 +18,34 @@ export const getUsersErrorAction = (error: string) => ({
     error: error
 })
 
+export const filteredUsersAction = (filteredUserList: User[]) => ({
+    type: UserActionTypes.FILTERED_USERS,
+    filteredUserList
+})
+
+
+export function filteredUsersThunk() {
+    return function (dispatch: Dispatch, getState: () => RootState) {
+        const { search, users } = getState();
+        const { userList, loading } = users;
+        console.log(console.log(search.searchValue))
+        const result = userList.filter((user: User) => user.firstName.toLowerCase().includes(search.searchValue.toLowerCase()) && search.searchValue !== '');
+
+        dispatch(filteredUsersAction(result))
+    }
+}
+
+
 
 export function getUsersThunk() {
     return async function (dispatch: Dispatch, getState: () => RootState) {
-        const { tabs, modal} = getState();
+        const { tabs, modal, search } = getState();
+    
         try {
-            dispatch(getUsersAction());
             const response = await fetchUsers(tabs.department);
             const result = modal.activeRadio === 'name' ? sotredUsersByName(response.items) : sotredUsersByDay(response.items);
             dispatch(getUsersSuccessAction(result));
+            // dispatch(getUsersAction());
         } catch (e) {
             dispatch(getUsersErrorAction('Error'));
         }
@@ -34,12 +53,4 @@ export function getUsersThunk() {
 }
 
 
-// export function filterUsers() {
-//     return async function (dispatch: Dispatch, getState: () => RootState) {
-//         const { search } = getState();
-//         const response = await fetchUsers()
-//         const result = response.items.filter((user: User) => user.firstName.toLowerCase().includes(autocomplite.autocomplite.toLowerCase()) && autocomplite.autocomplite !== '');
-//         dispatch(getUsersSuccessAction(result))
-//     }
 
-// }

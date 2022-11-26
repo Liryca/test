@@ -5,12 +5,15 @@ import filteredActive from "./images/filtered2.svg";
 import { useAppDispatch, useAppSelector } from "../../hooks/useSelectorTyped";
 import { openModalShow } from "../../store/modal/actions";
 import { changeSearchValue } from "../../store/search/actions";
+import { User } from "../../types/usersTypes";
+import { filteredUsersAction, filteredUsersThunk, getUsersThunk } from "../../store/users/actions";
 
 const Search: React.FC = () => {
  
     const dispatch = useAppDispatch();
 
-    const {modal} = useAppSelector(state=>state)
+    const { modal,users } = useAppSelector(state => state);
+ 
  
     function handleModalOpen(e: React.MouseEvent) {
         dispatch(openModalShow(true));
@@ -18,11 +21,10 @@ const Search: React.FC = () => {
 
 
     function searchUser(e: React.ChangeEvent<HTMLInputElement>) {
-       
-        // const result = users.filter((user: User) => user.firstName.toLowerCase().includes(e.target.value.toLowerCase()) && e.target.value !== '');
-        // dispatch(getFilteredUsers(result))
-        dispatch(changeSearchValue(e.target.value))
-        // dispatch(filterUsers())
+        dispatch(changeSearchValue(e.target.value));
+        dispatch( filteredUsersThunk()) 
+        
+    
     }
 
     return (

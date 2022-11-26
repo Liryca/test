@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './Tabs.css';
 import { useAppDispatch, useAppSelector } from "../../hooks/useSelectorTyped";
-import { getUsersThunk} from "../../store/users/actions";
+import { filteredUsersAction, filteredUsersThunk, getUsersThunk} from "../../store/users/actions";
 import { chooseDepartment } from "../../store/tabs/actions"
 
-const departments = {
+const array = {
     android: 'Android',
     ios: 'iOS',
     design: 'Дизайн',
@@ -22,20 +22,31 @@ const departments = {
 
 const Tabs: React.FC = () => {
 
-    const {department} = useAppSelector(state=>state.tabs)
+  
 
+    const {department } = useAppSelector(state => state.tabs);
     const dispatch = useAppDispatch();
+    const {searchValue} = useAppSelector(state=>state.search)
 
-    function filteredUsersByDepartment(key:string) {
+    // useEffect(() => {
+    //     console.log(department)
+    //     console.log(searchValue)
+    //     dispatch(filteredUsersThunk())
+    // },[department, dispatch])
+
+    function filteredUsersByDepartment(key: string) {
         dispatch(chooseDepartment(key))
         dispatch(getUsersThunk())
+        if (searchValue) {
+          setTimeout(()=> dispatch(filteredUsersThunk()),1000) 
+        }
 }
 
     return (
         <ul className='department-tabs'>
-            <li className={department === 'all' ? 'all-department-tabs' : 'category-department-tabs'} onClick={(e) => filteredUsersByDepartment('all')}>Все</li>
-            {Object.entries(departments).map(([key, value], index) => {
-                return <li key={index} className={department === key ? 'category-department-tabs' : 'all-department-tabs'} onClick={() => filteredUsersByDepartment(key)}>{value}</li>
+            <li className={department === 'all' ? 'active-tab' : 'tab'} onClick={() => filteredUsersByDepartment('all')}>Все</li>
+            {Object.entries(array).map(([key, value], index) => {
+                return <li key={index} className={department === key ? 'active-tab' : 'tab'} onClick={() => filteredUsersByDepartment(key)}>{value}</li>
             })}
         </ul>
     );

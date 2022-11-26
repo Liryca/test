@@ -1,9 +1,10 @@
 
 export interface UsersState {
-    userList: User[] | null,
+   
+    userList: any[],
+    filteredUserList: any[]
     loading: boolean,
     error: null | string,
-
 }
 
 export interface User {
@@ -22,6 +23,7 @@ export enum UserActionTypes {
     GET_USERS = 'GET_USERS',
     GET_USERS_SUCCESS = 'GET_USERS_SUCCESS',
     GET_USERS_ERROR = 'GET_USERS_ERROR',
+    FILTERED_USERS = 'FILTERED_USERS'
  
 }
 
@@ -31,7 +33,7 @@ interface GetUsersAction {
 
 interface GetUsersSuccessAction {
     type: UserActionTypes.GET_USERS_SUCCESS;
-    userList: User[]
+    userList:  any[]
 }
 
 
@@ -40,10 +42,13 @@ interface GetUsersErrorAction {
     error: string
 }
 
+interface FilteredUsersAction {
+    type: UserActionTypes.FILTERED_USERS;
+    filteredUserList: any[]
+}
 
 
-
-export type UsersAction =GetUsersAction| GetUsersErrorAction | GetUsersSuccessAction
+export type UsersAction =GetUsersAction| GetUsersErrorAction | GetUsersSuccessAction|FilteredUsersAction
 
  
 

@@ -5,7 +5,7 @@
     padding: 0;
     list-style: none;
 }
-.all-department-tabs {
+.tab {
     color: #97979B;
     margin: 0;
     padding: 8px 12px;
@@ -15,7 +15,7 @@
     cursor: pointer;
 }
 
-.category-department-tabs {
+.active-tab {
     margin: 0;
     padding: 8px 12px;
     font-weight: 600;

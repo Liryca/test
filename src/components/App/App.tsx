@@ -6,11 +6,11 @@ import Tabs from '../Tabs/Tabs';
 function App() {
   return (
     <div className="App">
-      <div className='app-top-bar'>
+      <section className='app-top-bar'>
         <h1 className='title'>Поиск</h1>
         <Search />
         <Tabs/>
-      </div>
+      </section>
       <Users />
     </div>
   );

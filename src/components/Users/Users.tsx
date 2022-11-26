@@ -8,40 +8,32 @@ import Modal from "../Modal/Modal";
 import Error from "../Error/Error";
 import 'react-loading-skeleton/dist/skeleton.css'
 import SkeletonCard from "../Sceleton/Sceleton";
+import SearchError from "../SearchError/SearchError";
 
 const Users: React.FC = () => {
 
   const dispatch = useAppDispatch();
-
-  const userList = useAppSelector((state: { users: { userList: User[] } }) => state.users.userList);
   const { users, modal, tabs } = useAppSelector(state => state);
-  const { error, loading } = users;
-
+  const { error, loading, userList, filteredUserList } = users;
+  const state = useAppSelector(state => state)
 
   useEffect(() => {
     dispatch(getUsersThunk())
   }, [tabs.department, dispatch]);
 
-  console.log(users);
+  console.log(filteredUserList);
 
   function getDeteils() {
     console.log()
   }
 
 
-  if (error === 'Error') {
-    return <Error />
-  }
-
-
-  if (loading) {
-    return <SkeletonCard />
-  }
-
-
-
+  if (error === 'Error') return <Error />
+  if (!loading) return <SkeletonCard />
+  // if(!filteredUserList.length) return <SearchError/>
 
   return (
+
     <ul className="user-list">
       <Modal />
       {userList.map((user: User) => {

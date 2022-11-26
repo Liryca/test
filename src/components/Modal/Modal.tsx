@@ -1,15 +1,13 @@
-import { sotredUsersByDay, sotredUsersByName } from "../../api/api";
 import { useAppDispatch, useAppSelector } from "../../hooks/useSelectorTyped";
 import { checkedRadioButton, closeModalShow } from "../../store/modal/actions";
-import { getUsersSuccessAction } from "../../store/users/actions";
-import { User } from "../../types/usersTypes";
+import { getUsersThunk } from "../../store/users/actions";
 import "./Modal.css";
 import x from "./x.svg";
 
 const Modal: React.FC = () => {
 
     const dispatch = useAppDispatch();
-   const {modal} = useAppSelector(state => state);
+    const { modal } = useAppSelector(state => state);
 
     function closeModal() {
         dispatch(closeModalShow(false));
@@ -18,11 +16,13 @@ const Modal: React.FC = () => {
     function checkDay(event: React.ChangeEvent<HTMLInputElement>) {
         dispatch(checkedRadioButton(event.target.value));
         setTimeout(() => dispatch(closeModalShow(false)), 100);
+        dispatch(getUsersThunk())
     }
 
     function checkName(event: React.ChangeEvent<HTMLInputElement>) {
         dispatch(checkedRadioButton(event.target.value));
-        setTimeout(() => dispatch(closeModalShow(false)), 100);   
+        setTimeout(() => dispatch(closeModalShow(false)), 100);  
+        dispatch(getUsersThunk())
     }
 
     return (
