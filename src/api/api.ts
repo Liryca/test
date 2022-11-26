@@ -12,25 +12,22 @@ export async function fetchUsers(department='all') {    /// получение �
   return response.data
 }
 
-
-export function getDayBirthday(date: string) {
-  const birthday = new Date(date);
+export function getDayBirthday(date: string) { //  возвращает дату в формате дата-месяц
+  const birthday = new Date(date);  
   const day = birthday.getDate();
   const month = new Date(date).toLocaleString('ru', { month: 'long' }).slice(0, 3);
   return `${day} ${month}`;
-
 }
 
-
 export function sotredUsersByName(users: User[]) {
-  return users.sort((a, b) => a.firstName > b.firstName ? 1 : -1);
+  return users.sort((a, b) => a.firstName > b.firstName ? 1 : -1); // сортровка по имени
 }
 
 const date = new Date();
 const monthNow = date.getMonth() + 1;
 const dayNow = date.getDate();
 
-export function sotredUsersByDay(users: User[]) {
+export function sotredUsersByDay(users: User[]) {  // сортировка по дате
   console.log(users)
   const afterDays = users
     .filter((user) => {
@@ -57,7 +54,6 @@ export function sotredUsersByDay(users: User[]) {
       return new Date(a.birthday).getMonth() > new Date(b.birthday).getMonth() ? 1 : -1
     }
   })
-
   return [...afterDays, ...beforeDays]
 }
 
@@ -67,6 +63,4 @@ export function sotredUsersByDay(users: User[]) {
 //   console.log(users)
 //   console.log(value)
 //   return users.filter((user: any) => user.department === value)
-
-
 // }

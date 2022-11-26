@@ -1,8 +1,8 @@
-export interface SearchState{
+export interface SearchState {
     searchValue: string;
 }
- 
-export interface SearchAction{
+
+export interface SearchAction {
     type: string;
     searchValue: string;
 }

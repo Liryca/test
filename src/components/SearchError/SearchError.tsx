@@ -1,7 +1,6 @@
 import React from 'react';
 import './SearchError.css';
-import error  from './error.svg'
-
+import error from './error.svg';
 
 const SearchError:React.FC = () => {
     return (

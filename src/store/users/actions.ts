@@ -3,7 +3,6 @@ import { Dispatch, } from 'redux';
 import { fetchUsers, sotredUsersByName, sotredUsersByDay } from "../../api/api";
 import { RootState } from "..";
 
-
 export const getUsersAction = () => ({
     type: UserActionTypes.GET_USERS,
 })
@@ -23,7 +22,6 @@ export const filteredUsersAction = (filteredUserList: User[]) => ({
     filteredUserList
 })
 
-
 export function filteredUsersThunk() {
     return function (dispatch: Dispatch, getState: () => RootState) {
         const { search, users } = getState();
@@ -35,12 +33,9 @@ export function filteredUsersThunk() {
     }
 }
 
-
-
 export function getUsersThunk() {
     return async function (dispatch: Dispatch, getState: () => RootState) {
         const { tabs, modal, search } = getState();
-    
         try {
             const response = await fetchUsers(tabs.department);
             const result = modal.activeRadio === 'name' ? sotredUsersByName(response.items) : sotredUsersByDay(response.items);

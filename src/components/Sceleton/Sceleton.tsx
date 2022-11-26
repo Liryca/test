@@ -15,10 +15,7 @@ const SkeletonCard = () => {
                   <Skeleton width={144} height={16} borderRadius={50} />
                   </div>
                  <Skeleton  width={80} height={12} borderRadius={50} />
-                 
-             
                 </div>
-     
               </li>
             ))}
         </ul> 

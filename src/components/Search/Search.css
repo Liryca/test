@@ -4,33 +4,31 @@
     display: flex;
     justify-content: space-around;
     position: relative;
-    align-items:center
+    align-items: center
 }
 
 .input-search-user {
     background: #F7F7F8;
     border-radius: 16px;
     width: 100%;
-    border:none;
+    border: none;
     outline: none;
     padding: 8px 12px 8px 44px;
     height: 24px;
 }
 
-.input-img-search{
+.input-img-search {
     position: absolute;
     left: 12px;
     top: 8px;
-   
 }
 
-.input-img-filtered{
+.input-img-filtered {
     position: absolute;
     right: 12px;
     top: 8px;
     width: 24px;
     height: 24px;
-   
 }
 
 ::placeholder {
@@ -38,4 +36,4 @@
     font-weight: 500;
     font-size: 15px;
     line-height: 20px;
-  }
+}

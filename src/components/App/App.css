@@ -1,8 +1,6 @@
-
-.App{
+.App {
     margin: 16px 16px 0 16px;
 }
-
 
 .app-top-bar {
     display: flex;
@@ -12,7 +10,6 @@
     padding: 0px;
     max-width: 1248px;
     width: 100%;
-  
 }
 
 .title {
@@ -22,5 +19,3 @@
     line-height: 28px;
 
 }
-
-

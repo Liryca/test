@@ -13,9 +13,9 @@ import SearchError from "../SearchError/SearchError";
 const Users: React.FC = () => {
 
   const dispatch = useAppDispatch();
-  const { users, modal, tabs } = useAppSelector(state => state);
+  const { users, modal, tabs, search } = useAppSelector(state => state);
   const { error, loading, userList, filteredUserList } = users;
-  const state = useAppSelector(state => state)
+  const state = useAppSelector(state => state);
 
   useEffect(() => {
     dispatch(getUsersThunk())
@@ -27,16 +27,13 @@ const Users: React.FC = () => {
     console.log()
   }
 
-
   if (error === 'Error') return <Error />
   if (!loading) return <SkeletonCard />
-  // if(!filteredUserList.length) return <SearchError/>
+  if (!filteredUserList.length && search.searchValue !== '') return <SearchError />
 
   return (
-
     <ul className="user-list">
-      <Modal />
-      {userList.map((user: User) => {
+      {!filteredUserList.length ? userList.map((user: User) => {
         return (
           <li onClick={getDeteils} key={user.id} className="user-card">
             <img className='user-card-avatar' src={user.avatarUrl} alt="avatar" />
@@ -53,7 +50,25 @@ const Users: React.FC = () => {
           </li>
         )
 
-      })}
+      }) :
+        filteredUserList.map((user: User) => {
+          return (
+            <li onClick={getDeteils} key={user.id} className="user-card">
+              <img className='user-card-avatar' src={user.avatarUrl} alt="avatar" />
+              <div className="user-info">
+                <div className="user-card-name">
+                  <p>{user.firstName}</p>
+                  <p>{user.lastName}</p>
+                  <p className="user-tag">{user.userTag.slice(0, 2).toLowerCase()}</p>
+                </div>
+                <p className="user-card-department"><span>{user.department}</span></p>
+
+              </div>
+              {modal.activeRadio === 'birthday' && <p className='user-card-birthday'>{getDayBirthday(user.birthday)}</p>}
+            </li>
+          )
+        })
+      }
     </ul>
   );
 };

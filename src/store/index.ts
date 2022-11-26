@@ -6,7 +6,6 @@ import { tabsReducer } from "./tabs/reducer";
 import thunk, { ThunkDispatch } from 'redux-thunk';
 import { searchReducer } from "./search/reduser";
 
-
  const rootReducer = combineReducers({
      users: usersReducer,
      modal: modalReducer,

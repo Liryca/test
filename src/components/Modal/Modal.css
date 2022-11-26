@@ -42,13 +42,13 @@
     font-size: 20px;
     line-height: 24px;
     text-align: center;
-
 }
 
-.modal img{
+.modal img {
     position: absolute;
     top: 24px;
     right: 24px;
+    
 }
 
 .modal-radio-buttons {
@@ -56,7 +56,6 @@
     flex-direction: column;
     margin-left: 18px;
     margin-top: 20px;
-
 }
 
 .modal label {
@@ -67,8 +66,9 @@
     font-size: 16px;
     line-height: 20px;
 }
-.modal label p{
- margin-left: 14px;
+
+.modal label p {
+    margin-left: 14px;
 }
 
 

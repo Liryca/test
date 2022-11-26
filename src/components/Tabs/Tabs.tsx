@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import './Tabs.css';
 import { useAppDispatch, useAppSelector } from "../../hooks/useSelectorTyped";
-import { filteredUsersAction, filteredUsersThunk, getUsersThunk} from "../../store/users/actions";
+import { filteredUsersAction, filteredUsersThunk, getUsersThunk } from "../../store/users/actions";
 import { chooseDepartment } from "../../store/tabs/actions"
 
 const array = {
@@ -22,25 +22,17 @@ const array = {
 
 const Tabs: React.FC = () => {
 
-  
-
-    const {department } = useAppSelector(state => state.tabs);
+    const { department } = useAppSelector(state => state.tabs);
     const dispatch = useAppDispatch();
-    const {searchValue} = useAppSelector(state=>state.search)
-
-    // useEffect(() => {
-    //     console.log(department)
-    //     console.log(searchValue)
-    //     dispatch(filteredUsersThunk())
-    // },[department, dispatch])
+    const { searchValue } = useAppSelector(state => state.search);
 
     function filteredUsersByDepartment(key: string) {
-        dispatch(chooseDepartment(key))
-        dispatch(getUsersThunk())
+        dispatch(chooseDepartment(key));
+        dispatch(getUsersThunk());
         if (searchValue) {
-          setTimeout(()=> dispatch(filteredUsersThunk()),1000) 
+            setTimeout(() => dispatch(filteredUsersThunk()), 1000);
         }
-}
+    }
 
     return (
         <ul className='department-tabs'>

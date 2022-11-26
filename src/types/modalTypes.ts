@@ -4,7 +4,6 @@ export interface ModalAction {
     activeRadio: string;
 }
 
-
 export interface ModalState {
     show: boolean;
     activeRadio: string;
