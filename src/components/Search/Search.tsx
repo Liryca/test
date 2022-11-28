@@ -17,12 +17,8 @@ const Search: React.FC = () => {
     }
 
     function searchUser(e: React.ChangeEvent<HTMLInputElement>) {
-      
-        setTimeout(() => {
             dispatch(changeSearchValue(e.target.value));
-            dispatch(filteredUsersThunk()) 
-        },500 )
-        dispatch(filteredUsersThunk());
+            dispatch(filteredUsersThunk());
     }
 
     return (

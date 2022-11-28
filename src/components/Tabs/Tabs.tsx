@@ -22,15 +22,17 @@ const array = {
 
 const Tabs: React.FC = () => {
 
-    const { department } = useAppSelector(state => state.tabs);
     const dispatch = useAppDispatch();
+    const { department } = useAppSelector(state => state.tabs);
     const { searchValue } = useAppSelector(state => state.search);
+    const { filteredUserList } = useAppSelector(state => state.users);
 
-    function filteredUsersByDepartment(key: string) {
+
+    async function filteredUsersByDepartment(key: string) {
         dispatch(chooseDepartment(key));
-        dispatch(getUsersThunk());
+        await dispatch(getUsersThunk());
         if (searchValue) {
-            setTimeout(() => dispatch(filteredUsersThunk()), 1000);
+            dispatch(filteredUsersThunk())
         }
     }
 

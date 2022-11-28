@@ -15,13 +15,10 @@ const Users: React.FC = () => {
   const dispatch = useAppDispatch();
   const { users, modal, tabs, search } = useAppSelector(state => state);
   const { error, loading, userList, filteredUserList } = users;
-  const state = useAppSelector(state => state);
 
   useEffect(() => {
     dispatch(getUsersThunk())
   }, [tabs.department, dispatch]);
-
-  console.log(filteredUserList);
 
   function getDeteils() {
     console.log()
@@ -33,7 +30,7 @@ const Users: React.FC = () => {
 
   return (
     <ul className="user-list">
-      {!filteredUserList.length ? userList.map((user: User) => {
+      {!filteredUserList.length?userList.map((user: User) => {
         return (
           <li onClick={getDeteils} key={user.id} className="user-card">
             <img className='user-card-avatar' src={user.avatarUrl} alt="avatar" />
@@ -62,7 +59,6 @@ const Users: React.FC = () => {
                   <p className="user-tag">{user.userTag.slice(0, 2).toLowerCase()}</p>
                 </div>
                 <p className="user-card-department"><span>{user.department}</span></p>
-
               </div>
               {modal.activeRadio === 'birthday' && <p className='user-card-birthday'>{getDayBirthday(user.birthday)}</p>}
             </li>

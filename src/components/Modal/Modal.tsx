@@ -7,27 +7,26 @@ import x from "./x.svg";
 const Modal: React.FC = () => {
 
     const dispatch = useAppDispatch();
-    const { modal,search } = useAppSelector(state => state);
+    const {show,activeRadio} = useAppSelector(state => state.modal);
 
     function closeModal() {
         dispatch(closeModalShow(false));
     }
 
     function changeValueButton(event: React.ChangeEvent<HTMLInputElement>) {
-        if (search.searchValue === '') {
             dispatch(checkedRadioButton(event.target.value));
             setTimeout(() => dispatch(closeModalShow(false)), 100);
             dispatch(getUsersThunk())
-        }
+        
     }
     return (
-        <div className='modal' style={!modal.show ? { visibility: "hidden" } : { visibility: 'visible' }}>
+        <div className='modal' style={!show ? { visibility: "hidden" } : { visibility: 'visible' }}>
             <div className='modal-content'  >
                 <img  onClick={closeModal} src={x} alt=''></img>
                 <div className='modal-title'><h2>Сортировка</h2></div>
                 <div className='modal-radio-buttons'>
-                    <label className="radio-button"><input onChange={changeValueButton} checked={modal.activeRadio === 'name' ? true : false} value='name' type="radio" /><span></span><p>По алфавиту</p> </label>
-                    <label className="radio-button"> <input onChange={changeValueButton} checked={modal.activeRadio === 'birthday' ? true : false} value='birthday' type="radio" /><span></span><p>По дню рождения</p></label>
+                    <label className="radio-button"><input onChange={changeValueButton} checked={activeRadio === 'name' ? true : false} value='name' type="radio" /><span></span><p>По алфавиту</p> </label>
+                    <label className="radio-button"> <input onChange={changeValueButton} checked={activeRadio === 'birthday' ? true : false} value='birthday' type="radio" /><span></span><p>По дню рождения</p></label>
                 </div>
             </div>
         </div>

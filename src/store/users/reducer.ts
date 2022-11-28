@@ -19,7 +19,7 @@ export function usersReducer(state = usersState, action: UsersAction): UsersStat
 
         case UserActionTypes.GET_USERS_SUCCESS:
             return {
-                loading: true, error: null, userList: action.userList, filteredUserList: []
+                loading: true, error: null, userList: action.userList, filteredUserList: [...state.filteredUserList]
             }
 
         case UserActionTypes.GET_USERS_ERROR:

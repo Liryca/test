@@ -5,6 +5,7 @@ import Tabs from '../Tabs/Tabs';
 import Modal from '../Modal/Modal';
 
 function App() {
+  
   return (
     <div className="App">
       <section className='app-top-bar'>
